@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/gym-web"
+    },
+    {
+      "path": "./apps/gym-api"
+    }
+  ],
+  "compilerOptions": {}
+}

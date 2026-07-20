@@ -1,0 +1,38 @@
+{
+  "name": "@org/source",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev:api": "nx serve gym-api",
+    "dev:web": "nx dev gym-web",
+    "build:api": "nx build gym-api",
+    "build:web": "nx build gym-web",
+    "prisma:generate": "nx exec -- prisma generate --schema=apps/gym-api/prisma/schema.prisma",
+    "prisma:push": "nx exec -- prisma db push --schema=apps/gym-api/prisma/schema.prisma"
+  },
+  "private": true,
+  "dependencies": {
+    "@prisma/client": "^5.22.0"
+  },
+  "devDependencies": {
+    "@nx/js": "23.1.0",
+    "@nx/nest": "23.1.0",
+    "@nx/next": "23.1.0",
+    "@swc-node/register": "1.11.1",
+    "@swc/core": "1.15.8",
+    "@swc/helpers": "0.5.18",
+    "@types/bcrypt": "^6.0.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.17",
+    "nx": "23.1.0",
+    "prettier": "^3.8.1",
+    "prisma": "^5.22.0",
+    "tslib": "^2.3.0",
+    "typescript": "~6.0.3",
+    "webpack-cli": "^7.2.1"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ]
+}
