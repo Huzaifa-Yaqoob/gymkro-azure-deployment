@@ -8,7 +8,8 @@
     "build:api": "nx build gym-api",
     "build:web": "nx build gym-web",
     "prisma:generate": "nx exec -- prisma generate --schema=apps/gym-api/prisma/schema.prisma",
-    "prisma:push": "nx exec -- prisma db push --schema=apps/gym-api/prisma/schema.prisma"
+    "prisma:push": "nx exec -- prisma db push --schema=apps/gym-api/prisma/schema.prisma",
+    "prisma:migrate:deploy": "nx exec -- prisma migrate deploy --schema=apps/gym-api/prisma/schema.prisma"
   },
   "private": true,
   "dependencies": {

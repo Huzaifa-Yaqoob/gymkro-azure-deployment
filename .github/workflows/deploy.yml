@@ -1,0 +1,46 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          clean: false
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: 'npm'
+
+      - run: npm ci
+
+      - run: npm run prisma:generate
+
+      - run: npm run prisma:migrate:deploy
+
+      - run: npx nx run-many -t build -p gym-api,gym-web
+
+      - name: Ensure pm2 is installed
+        run: command -v pm2 || npm install -g pm2
+
+      - name: Reload apps with pm2
+        run: pm2 startOrReload ecosystem.config.js --update-env
+
+      - name: Persist pm2 process list
+        run: pm2 save
