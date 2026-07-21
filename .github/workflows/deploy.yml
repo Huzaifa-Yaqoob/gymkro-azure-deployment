@@ -23,11 +23,6 @@ jobs:
         with:
           clean: false
 
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 24
-          cache: 'npm'
-
       - run: npm ci
 
       - run: npm run prisma:generate
