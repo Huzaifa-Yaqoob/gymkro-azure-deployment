@@ -18,6 +18,8 @@ jobs:
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      CORS_ORIGIN: http://172.202.105.242:4200
+      NEXT_PUBLIC_API_URL: http://172.202.105.242:3000/api
     steps:
       - uses: actions/checkout@v5
         with:
